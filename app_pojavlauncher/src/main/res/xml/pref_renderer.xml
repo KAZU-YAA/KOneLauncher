@@ -4,9 +4,9 @@
 
     <net.kdt.pojavlauncncher.prefs.BackButtonPreference/>
 
-    <PrefwrenceCategory android:title="@string/pref_renderer_krypton" android:icon="@drawable/ic_krypton_renderer">
+    <PreferenceCategory android:title="@string/pref_renderer_krypton" android:icon="@drawable/ic_krypton_renderer">
         <SwitchPreference
-        android:title="@string/krypton_-title_enable_angle"
+        android:title="@string/krypton_title_enable_angle"
         android:summary="@string/krypton_summary_enable_angle"
         android:key="krypton_enable_angle"
         android:defaultValue="false"
