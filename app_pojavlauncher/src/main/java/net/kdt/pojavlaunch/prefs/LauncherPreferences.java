@@ -18,6 +18,7 @@ import net.kdt.pojavlaunch.multirt.MultiRTUtils;
 import net.kdt.pojavlaunch.utils.JREUtils;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 
 import git.artdeell.mojo.R;
 
@@ -217,5 +218,10 @@ public class LauncherPreferences {
             LauncherPreferences.PREF_NOTCH_SIZE = -1;
         }
         Tools.updateWindowSize(activity);
+    }
+    public static void writeKryptonAngleoption() throws IOException{
+        LinkedHashMap<String, Object> KryptonWrapper = new LinkedHashMap<>();
+        int KryptonAngle = DEFAULT_PREF.getBolean("krypton_enable_angle", "false")? 1 : 0;
+        KryptonWrapper.put("LIBGL_GLES",  libGLESv2_angle.so);
     }
 }
