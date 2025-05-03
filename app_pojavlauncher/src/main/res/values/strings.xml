@@ -438,5 +438,7 @@
     <string name="bta_installer_nightly_versions">Nightly BTA versions</string>
     <string name="newdl_extracting_native_libraries">Extracting native libraries (%d/%d)</string>
     <string name="compat_version_not_supported">Your device cannot run this version because LTW is not supported on your device.</string>
-    
+    <string name="krypton_summary_enable_angle">Krypton Wrapper Known as Next Generation Gl4es</string>
+    <string name="krypton_title_enable_angle">enable angle requires vulkan 1.2</string>
+    <string name="pref_renderer_krypton">Krypton Wrapper</string>
 </resources>
