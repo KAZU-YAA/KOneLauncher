@@ -252,6 +252,7 @@ afterEvaluate {
         registrar.projectJarDependency project(":forge_installer"), "components/forge_installer"
         registrar.projectJarDependency project(":arc_dns_injector"), "components/arc_dns_injector"
         registrar.projectJarDependency project(":jre_lwjgl3glfw"), "components/lwjgl3"
+        registrar.projectJarDependency project(":mojoapi"), "components/mojoapi"
 
         def jreBuildRepository = "https://nightly.link/MojoLauncher/android-openjdk-build-multiarch/workflows/build/";
 

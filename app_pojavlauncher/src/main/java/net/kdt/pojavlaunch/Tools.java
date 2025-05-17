@@ -370,7 +370,7 @@ public final class Tools {
 
         javaArgList.addAll(Arrays.asList(getMinecraftJVMArgs(versionId, gamedir)));
         javaArgList.add("-cp");
-        javaArgList.add(launchClassPath + ":" + getLWJGL3ClassPath());
+        javaArgList.add(launchClassPath + ":" + getLWJGL3ClassPath() + ":" + getMojoAPIClasspath());
 
         javaArgList.add(versionInfo.mainClass);
         javaArgList.addAll(Arrays.asList(launchArgs));
@@ -587,6 +587,22 @@ public final class Tools {
         if (lwjgl3Files != null) {
             for (File file: lwjgl3Files) {
                 if (file.getName().endsWith(".jar")) {
+                    libStr.append(file.getAbsolutePath()).append(":");
+                }
+            }
+        }
+        // Remove the ':' at the end
+        libStr.setLength(libStr.length() - 1);
+        return libStr.toString();
+    }
+
+    private static String getMojoAPIClasspath() {
+        StringBuilder libStr = new StringBuilder();
+        File mojoApiFolder = new File(Tools.DIR_GAME_HOME, "mojoapi");
+        File[] mojoApiFiles = mojoApiFolder.listFiles();
+        if (mojoApiFiles != null) {
+            for (File file: mojoApiFiles) {
+                if (file.getName().endsWith(".jar") && !file.getName().endsWith("-sources.jar") && !file.getName().endsWith("-javadoc.jar")) {
                     libStr.append(file.getAbsolutePath()).append(":");
                 }
             }

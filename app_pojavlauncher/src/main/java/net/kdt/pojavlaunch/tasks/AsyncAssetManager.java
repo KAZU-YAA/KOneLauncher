@@ -81,6 +81,7 @@ public class AsyncAssetManager {
             tryUnpackComponent(ctx, "caciocavallo", false);
             tryUnpackComponent(ctx, "caciocavallo17", false);
             tryUnpackComponent(ctx, "lwjgl3", false);
+            tryUnpackComponent(ctx, "mojoapi", false);
 
             tryUnpackComponent(ctx, "security", true);
             tryUnpackComponent(ctx, "arc_dns_injector", true);
