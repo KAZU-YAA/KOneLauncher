@@ -352,12 +352,9 @@ public final class Tools {
         getCacioJavaArgs(javaArgList, runtime.javaVersion == 8);
 
         if (versionInfo.logging != null) {
-            String configFile = Tools.DIR_DATA + "/security/" + versionInfo.logging.client.file.id.replace("client", "log4j-rce-patch");
-            if (!new File(configFile).exists()) {
-                configFile = Tools.DIR_GAME_NEW + "/" + versionInfo.logging.client.file.id;
-            }
-            javaArgList.add("-Dlog4j.configurationFile=" + configFile);
-        }
+             String configFile = getLog4jConfiguration(activity, versionInfo.logging);
+             javaArgList.add("-Dlog4j.configurationFile=" + configFile);
+         }
 
         File versionSpecificNativesDir = new File(Tools.DIR_CACHE, "natives/"+versionId);
         if(versionSpecificNativesDir.exists()) {
@@ -1448,4 +1445,19 @@ public final class Tools {
                     }
                 }).show();
     }
+
+    private static String getLog4jConfiguration(Context ctx, JMinecraftVersionList.LoggingConfig loggingConfig){
+         String configFilePath = Tools.DIR_DATA + "/security/" + loggingConfig.client.file.id.replace("client", "log4j-rce-patch");
+         File configFile = new File(configFilePath);
+         if (!configFile.exists()) {
+             // try unpacking a new configuration from an existing installation
+             try {
+                 copyAssetFile(ctx,"components/security/" + loggingConfig.client.file.id.replace("client", "log4j-rce-patch"), Tools.DIR_DATA + "/security", false);
+             } catch (IOException ignored) {}
+ 
+             // use minecraft's default when still not existing
+             if(!configFile.exists()) configFilePath = Tools.DIR_GAME_NEW + "/" + loggingConfig.client.file.id;
+         }
+         return configFilePath;
+     }
 }
